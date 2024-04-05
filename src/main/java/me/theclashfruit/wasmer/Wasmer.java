@@ -1,8 +1,7 @@
 package me.theclashfruit.wasmer;
 
 import com.dylibso.chicory.runtime.*;
-import me.theclashfruit.wasmer.functions.LoggerError;
-import me.theclashfruit.wasmer.functions.LoggerInfo;
+import me.theclashfruit.wasmer.functions.*;
 import me.theclashfruit.wasmer.api.registry.MethodRegistry;
 import me.theclashfruit.wasmer.wasm.WasmLoader;
 import net.fabricmc.api.ModInitializer;
@@ -18,7 +17,10 @@ public class Wasmer implements ModInitializer {
     public void onInitialize() {
         // register base functions
         MethodRegistry.register(new LoggerInfo());
+        MethodRegistry.register(new LoggerDebug());
+        MethodRegistry.register(new LoggerWarning());
         MethodRegistry.register(new LoggerError());
+        MethodRegistry.register(new LoggerTrace());
 
         // load wasm files
         WasmLoader.loadWasmFiles();
