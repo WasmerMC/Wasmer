@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "id": "wasmer",
+  "version": "${version}",
+  "name": "Wasmer",
+  "description": "Run & Build mods with WebAssembly!",
+  "authors": [
+    {
+      "name": "TheClashFruit",
+      "contact": {
+        "email": "admin@theclashfruit.me",
+        "homepage": "https://theclashfruit.me"
+      }
+    }
+  ],
+  "contact": {
+    "sources": "https://github.com/TheClashFruit/Wasmer",
+    "issues": "https://github.com/TheClashFruit/Wasmer/issues",
+    "homepage": "https://theclashfruit.me/projects/wasmer"
+  },
+  "license": "MIT",
+  "icon": "assets/wasmer/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "me.theclashfruit.wasmer.client.WasmerClient"
+    ],
+    "main": [
+      "me.theclashfruit.wasmer.Wasmer"
+    ]
+  },
+  "mixins": [
+    "wasmer.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/CWEApqJ6rc",
+        "modmenu.documentation": "https://github.com/TheClashFruit/Wasmer/wiki"
+      },
+      "update_checker": true
+    }
+  }
+}
