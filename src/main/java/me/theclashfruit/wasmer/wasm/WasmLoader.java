@@ -2,6 +2,7 @@ package me.theclashfruit.wasmer.wasm;
 
 import com.dylibso.chicory.runtime.*;
 import com.dylibso.chicory.runtime.Module;
+import me.theclashfruit.wasmer.api.registry.MethodRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import org.jetbrains.annotations.NotNull;
 
@@ -50,7 +51,7 @@ public class WasmLoader {
     private static @NotNull HostImports getHostImports() {
         ArrayList<HostFunction> hostFunctions = new ArrayList<>();
 
-        FunctionRegistry.functions.forEach((function) -> {
+        MethodRegistry.functions.forEach((function) -> {
             hostFunctions.add(new HostFunction(
                 function::execute,
                 "env",
