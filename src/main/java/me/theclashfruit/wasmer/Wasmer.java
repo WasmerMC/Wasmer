@@ -6,6 +6,7 @@ import me.theclashfruit.wasmer.api.registry.MethodRegistry;
 import me.theclashfruit.wasmer.wasm.WasmLoader;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.loader.api.FabricLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,13 +16,6 @@ public class Wasmer implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        // register base functions
-        MethodRegistry.register(new LoggerInfo());
-        MethodRegistry.register(new LoggerDebug());
-        MethodRegistry.register(new LoggerWarning());
-        MethodRegistry.register(new LoggerError());
-        MethodRegistry.register(new LoggerTrace());
-
         // load wasm files
         WasmLoader.loadWasmFiles();
 
@@ -33,7 +27,9 @@ public class Wasmer implements ModInitializer {
                 if (eFunc != null) {
                     eFunc.apply();
                 }
-            } catch (Exception ignored) {}
+            } catch (Exception e) {
+                LOGGER.error(e.getMessage(), e);
+            }
         });
     }
 }

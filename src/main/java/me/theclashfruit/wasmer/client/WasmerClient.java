@@ -4,6 +4,8 @@ import com.dylibso.chicory.runtime.ExportFunction;
 import me.theclashfruit.wasmer.wasm.WasmLoader;
 import net.fabricmc.api.ClientModInitializer;
 
+import static me.theclashfruit.wasmer.Wasmer.LOGGER;
+
 public class WasmerClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
@@ -14,7 +16,9 @@ public class WasmerClient implements ClientModInitializer {
                 if (eFunc != null) {
                     eFunc.apply();
                 }
-            } catch (Exception ignored) {}
+            } catch (Exception e) {
+                LOGGER.error(e.getMessage(), e);
+            }
         });
     }
 }

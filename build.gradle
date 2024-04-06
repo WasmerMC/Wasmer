@@ -47,7 +47,7 @@ dependencies {
     includeAndExpose("com.dylibso.chicory:runtime:0.0.9")
 
     // Development Runtime Mods.
-    // modLocalRuntime("maven.modrinth:fabric-api:${project.modmenu_version}")
+    // modLocalRuntime("maven.modrinth:fabric-api:${project.fabric_version}")
     // modLocalRuntime("maven.modrinth:modmenu:${project.modmenu_version}")
 }
 
