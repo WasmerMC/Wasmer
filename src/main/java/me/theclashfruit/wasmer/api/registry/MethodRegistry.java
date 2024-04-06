@@ -4,10 +4,21 @@ import me.theclashfruit.wasmer.api.WasmMethod;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents a registry for WebAssembly methods.
+ */
 public class MethodRegistry {
-    public static ArrayList<WasmMethod> functions = new ArrayList<>();
+    /**
+     * A list of all registered WebAssembly methods.
+     */
+    public static ArrayList<WasmMethod> methods = new ArrayList<>();
 
-    public static void register(WasmMethod function) {
-        functions.add(function);
+    /**
+     * Registers a new WebAssembly method.
+     *
+     * @param method The WebAssembly method to register.
+     */
+    public static void register(WasmMethod method) {
+        methods.add(method);
     }
 }

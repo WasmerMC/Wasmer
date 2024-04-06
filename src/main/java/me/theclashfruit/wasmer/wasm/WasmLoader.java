@@ -51,7 +51,7 @@ public class WasmLoader {
     private static @NotNull HostImports getHostImports() {
         ArrayList<HostFunction> hostFunctions = new ArrayList<>();
 
-        MethodRegistry.functions.forEach((function) -> {
+        MethodRegistry.methods.forEach((function) -> {
             hostFunctions.add(new HostFunction(
                 function::execute,
                 "env",
