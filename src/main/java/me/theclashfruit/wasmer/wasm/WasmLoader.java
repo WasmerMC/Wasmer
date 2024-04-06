@@ -3,6 +3,7 @@ package me.theclashfruit.wasmer.wasm;
 import com.dylibso.chicory.runtime.*;
 import com.dylibso.chicory.runtime.Module;
 import com.dylibso.chicory.wasm.types.Value;
+import com.dylibso.chicory.wasm.types.ValueType;
 import me.theclashfruit.wasmer.api.registry.MethodRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import org.jetbrains.annotations.NotNull;
@@ -12,6 +13,8 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 import static me.theclashfruit.wasmer.Wasmer.LOGGER;
@@ -55,6 +58,12 @@ public class WasmLoader {
         ArrayList<HostFunction> hostFunctions = new ArrayList<>();
 
         MethodRegistry.methods.forEach((function) -> {
+            List<ValueType> params  = new LinkedList<>();
+            List<ValueType> returns = new LinkedList<>();
+
+            function.params.forEach((value) -> params.add(value.vT));
+            function.returns.forEach((value) -> returns.add(value.vT));
+
             hostFunctions.add(new HostFunction(
                 (instance, args) -> {
                     try {
@@ -83,8 +92,8 @@ public class WasmLoader {
                 },
                 "env",
                 function.fieldName,
-                function.params,
-                function.returns
+                params,
+                returns
             ));
         });
 

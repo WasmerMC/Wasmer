@@ -1,10 +1,7 @@
 package me.theclashfruit.wasmer.functions;
 
-import com.dylibso.chicory.wasm.types.ValueType;
+import me.theclashfruit.wasmer.api.ValueType;
 import me.theclashfruit.wasmer.api.WasmMethod;
-
-import com.dylibso.chicory.runtime.Instance;
-import com.dylibso.chicory.wasm.types.Value;
 
 import java.util.List;
 
