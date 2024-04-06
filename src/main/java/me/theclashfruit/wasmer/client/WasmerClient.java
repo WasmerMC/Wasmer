@@ -9,10 +9,10 @@ public class WasmerClient implements ClientModInitializer {
     public void onInitializeClient() {
         WasmLoader.instances.forEach(instance -> {
             try {
-                ExportFunction iterFact = instance.export("on_initialize_client");
+                ExportFunction eFunc = instance.export("on_initialize_client");
 
-                if (iterFact != null) {
-                    iterFact.apply();
+                if (eFunc != null) {
+                    eFunc.apply();
                 }
             } catch (Exception ignored) {}
         });

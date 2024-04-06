@@ -28,10 +28,10 @@ public class Wasmer implements ModInitializer {
         // call on_initialize functions
         WasmLoader.instances.forEach(instance -> {
             try {
-                ExportFunction iterFact = instance.export("on_initialize");
+                ExportFunction eFunc = instance.export("on_initialize");
 
-                if (iterFact != null) {
-                    iterFact.apply();
+                if (eFunc != null) {
+                    eFunc.apply();
                 }
             } catch (Exception ignored) {}
         });
