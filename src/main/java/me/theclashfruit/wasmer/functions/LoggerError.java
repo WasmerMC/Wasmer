@@ -18,8 +18,8 @@ public class LoggerError extends WasmMethod {
     }
 
     @Override
-    public Value[] execute(Instance inst, Value... args) {
-        LOGGER.error(getString(inst, args[0].asInt(), args[1].asInt()));
+    public Integer[] execute(Integer... args) {
+        LOGGER.error(getString(args[0], args[1]));
 
         return null;
     }

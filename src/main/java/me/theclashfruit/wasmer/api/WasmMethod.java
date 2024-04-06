@@ -1,51 +1,62 @@
 package me.theclashfruit.wasmer.api;
 
 import com.dylibso.chicory.runtime.Instance;
-import com.dylibso.chicory.wasm.types.Value;
 import com.dylibso.chicory.wasm.types.ValueType;
 
 import java.util.List;
 
 /**
- * This class represents a WebAssembly method.
+ * Represents a WebAssembly method.
  */
 public class WasmMethod {
     /**
-     * The name of the field associated with this method.
+     * The name of the field.
      */
     public String fieldName = "default";
 
     /**
-     * The list of parameter types that this method accepts.
+     * The parameters of the method.
      */
     public List<ValueType> params  = List.of();
     /**
-     * The list of return types that this method produces.
+     * The return values of the method.
      */
     public List<ValueType> returns = List.of();
+
+    /**
+     * The instance of the method.
+     */
+    private Instance instance;
 
     public WasmMethod() {}
 
     /**
-     * Executes the method on a given instance with the provided arguments.
+     * Executes the method with the given arguments.
      *
-     * @param inst The instance on which to execute the method.
-     * @param args The arguments to pass to the method.
-     * @return The return values from the method execution.
+     * @param args The arguments to execute the method with.
+     * @return Return values of the method.
      */
-    public Value[] execute(Instance inst, Value... args) {
+    public Integer[] execute(Integer... args) {
         return null;
     }
 
     /**
-     * Reads a string from the memory of a given instance.
+     * Reads a string from the instance's memory.
      *
-     * @param inst The instance from which to read the string.
      * @param length The length of the string to read.
-     * @param offset The offset in memory where the string starts.
+     * @param offset The offset to start reading from.
      * @return The read string.
      */
-    public static String getString(Instance inst, int length, int offset) {
-        return inst.memory().readString(offset, length);
+    public String getString(int length, int offset) {
+        return instance.memory().readString(offset, length);
+    }
+
+    /**
+     * Sets the instance of the method.
+     *
+     * @param inst The instance to set.
+     */
+    public void setInstance(Instance inst) {
+        instance = inst;
     }
 }

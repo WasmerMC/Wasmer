@@ -18,8 +18,8 @@ public class LoggerInfo extends WasmMethod {
     }
 
     @Override
-    public Value[] execute(Instance inst, Value... args) {
-        LOGGER.info(getString(inst, args[0].asInt(), args[1].asInt()));
+    public Integer[] execute(Integer... args) {
+        LOGGER.info(getString(args[0], args[1]));
 
         return null;
     }

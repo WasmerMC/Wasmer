@@ -2,11 +2,14 @@ package me.theclashfruit.wasmer.wasm;
 
 import com.dylibso.chicory.runtime.*;
 import com.dylibso.chicory.runtime.Module;
+import com.dylibso.chicory.wasm.types.Value;
 import me.theclashfruit.wasmer.api.registry.MethodRegistry;
 import net.fabricmc.loader.api.FabricLoader;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.lang.reflect.Array;
+import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -53,7 +56,31 @@ public class WasmLoader {
 
         MethodRegistry.methods.forEach((function) -> {
             hostFunctions.add(new HostFunction(
-                function::execute,
+                (instance, args) -> {
+                    try {
+                        function.setInstance(instance);
+
+                        ArrayList<Integer> values = new ArrayList<>();
+
+                        for (Value val : args) {
+                            values.add(val.asInt());
+                        }
+
+                        Integer[] rI = function.execute(values.toArray(Integer[]::new));
+
+                        Value[] rV = new Value[rI.length];
+
+                        for (int i = 0; i < rI.length; i++) {
+                            rV[i] = Value.i32(rI[i]);
+                        }
+
+                        return rV;
+                    } catch (Exception e) {
+                        LOGGER.error(e.getMessage(), e);
+                    }
+
+                    return null;
+                },
                 "env",
                 function.fieldName,
                 function.params,
