@@ -25,7 +25,7 @@ public class WasmMethod {
     /**
      * The instance of the method.
      */
-    private Instance instance;
+    protected Instance instance;
 
     public WasmMethod() {}
 
