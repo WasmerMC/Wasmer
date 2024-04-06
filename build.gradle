@@ -10,6 +10,18 @@ base {
     archivesName = project.archives_base_name
 }
 
+configurations {
+    includeAndExpose
+
+    modApi {
+        extendsFrom includeAndExpose
+    }
+
+    include {
+        extendsFrom includeAndExpose
+    }
+}
+
 repositories {
     // Add repositories to retrieve artifacts from in here.
     // You should only use this when depending on other mods because
@@ -32,7 +44,7 @@ dependencies {
     // Fabric API. This is technically optional, but you probably want it anyway.
     // modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    implementation 'com.dylibso.chicory:runtime:0.0.9'
+    includeAndExpose("com.dylibso.chicory:runtime:0.0.9")
 
     // Development Runtime Mods.
     // modLocalRuntime("maven.modrinth:fabric-api:${project.modmenu_version}")
