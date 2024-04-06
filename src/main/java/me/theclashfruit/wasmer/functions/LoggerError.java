@@ -1,6 +1,6 @@
 package me.theclashfruit.wasmer.functions;
 
-import me.theclashfruit.wasmer.api.ValueType;
+import me.theclashfruit.wasmer.api.wrapper.ValueType;
 import me.theclashfruit.wasmer.api.WasmMethod;
 
 import java.util.List;

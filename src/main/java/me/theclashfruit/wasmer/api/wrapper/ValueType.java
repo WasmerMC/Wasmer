@@ -1,4 +1,4 @@
-package me.theclashfruit.wasmer.api;
+package me.theclashfruit.wasmer.api.wrapper;
 
 public enum ValueType {
     F64(com.dylibso.chicory.wasm.types.ValueType.F64),

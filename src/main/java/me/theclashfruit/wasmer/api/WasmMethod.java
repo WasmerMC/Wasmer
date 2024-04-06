@@ -1,6 +1,7 @@
 package me.theclashfruit.wasmer.api;
 
 import com.dylibso.chicory.runtime.Instance;
+import me.theclashfruit.wasmer.api.wrapper.ValueType;
 
 import java.util.List;
 
